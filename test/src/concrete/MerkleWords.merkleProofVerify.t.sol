@@ -6,25 +6,30 @@ import {MerkleWords} from "src/concrete/MerkleWords.sol";
 import {OpTest, StackItem} from "rainlang-0.2.19/test/abstract/OpTest.sol";
 import {ExternIntegrityInputsMismatch} from "rainlang-0.2.19/src/error/ErrExtern.sol";
 import {Strings} from "@openzeppelin-contracts-5.7.0/utils/Strings.sol";
+import {
+    ROOT,
+    LEAF0_0_VALUE,
+    LEAF0_0_AMOUNT,
+    LEAF0_0_INNER,
+    PROOF0_0,
+    LEAF1_0_VALUE,
+    LEAF1_0_AMOUNT,
+    LEAF1_0_INNER,
+    PROOF1_0
+} from "test/proof/LibTestProof.sol";
 
 contract MerkleWordsMerkleProofVerifyTest is OpTest {
     using Strings for address;
     using Strings for uint256;
 
-    function testMerkleWordsMerkleProofVerifyHappy() external {
+    function checkStandardLeaf(address value, bytes32 amount, bytes32 inner, bytes32 proof) internal {
         MerkleWords merkleWords = new MerkleWords();
-
-        bytes32 root = 0xd4dee0beab2d53f2cc83e567171bd2820e49898130a22622b10ead383e90bd77;
-        bytes32 proof = 0xb92c48e9d7abe27fd8dfd6b5dfdbfb1c9a463f80c712b66f3a5180a090cccafc;
-        bytes32 leaf = keccak256(
-            bytes.concat(keccak256(abi.encode(0x1111111111111111111111111111111111111111, 5000000000000000000)))
-        );
 
         StackItem[] memory expectedStack = new StackItem[](4);
         expectedStack[0] = StackItem.wrap(bytes32(uint256(1)));
         expectedStack[1] = StackItem.wrap(proof);
-        expectedStack[2] = StackItem.wrap(leaf);
-        expectedStack[3] = StackItem.wrap(root);
+        expectedStack[2] = StackItem.wrap(inner);
+        expectedStack[3] = StackItem.wrap(ROOT);
 
         checkHappy(
             bytes(
@@ -33,11 +38,13 @@ contract MerkleWordsMerkleProofVerifyTest is OpTest {
                     address(merkleWords).toHexString(),
                     "\n",
                     "root: ",
-                    uint256(root).toHexString(),
+                    uint256(ROOT).toHexString(),
                     ",",
-                    "leaf: ",
-                    uint256(leaf).toHexString(),
-                    ",",
+                    "leaf: hash(",
+                    value.toHexString(),
+                    " ",
+                    uint256(amount).toHexString(),
+                    "),",
                     "proof: ",
                     uint256(proof).toHexString(),
                     ",",
@@ -45,8 +52,13 @@ contract MerkleWordsMerkleProofVerifyTest is OpTest {
                 )
             ),
             expectedStack,
-            "merkle-proof-verify(root leaf proof)"
+            "merkle-proof-verify(root hash(value amount) proof)"
         );
+    }
+
+    function testMerkleWordsMerkleProofVerifyStandardTreeHashedValues() external {
+        checkStandardLeaf(LEAF0_0_VALUE, LEAF0_0_AMOUNT, LEAF0_0_INNER, PROOF0_0);
+        checkStandardLeaf(LEAF1_0_VALUE, LEAF1_0_AMOUNT, LEAF1_0_INNER, PROOF1_0);
     }
 
     function testMerkleWordsMerkleProofVerifyUnhappy(bytes32 proof, bytes32 leaf, bytes32 root) external {

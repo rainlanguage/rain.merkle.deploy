@@ -21,7 +21,7 @@ contract MerkleWordsMerkleProofVerifyForgeryTest is OpTest {
     bytes32 internal root;
 
     function account(uint256 i) internal pure returns (address) {
-        return address(uint160(i + 1));
+        return [address(0x1001), address(0x1002), address(0x1003), address(0x1004)][i];
     }
 
     function amount(uint256 i) internal pure returns (uint256) {

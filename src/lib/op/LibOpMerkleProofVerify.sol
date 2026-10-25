@@ -40,7 +40,11 @@ library LibOpMerkleProofVerify {
             mstore(proof, proofLength)
         }
 
-        bytes32 leaf = keccak256(bytes.concat(innerLeaf));
+        bytes32 leaf;
+        assembly ("memory-safe") {
+            mstore(0, innerLeaf)
+            leaf := keccak256(0, 0x20)
+        }
         uint256 isValid = MerkleProof.verify(proof, root, leaf) ? 1 : 0;
         assembly ("memory-safe") {
             // We can mutate inputs again to be outputs.

@@ -8,17 +8,17 @@ import {
     BaseRainlangSubParser,
     IParserToolingV1,
     ISubParserToolingV1
-} from "rainlang-0.1.2/src/abstract/BaseRainlangSubParser.sol";
-import {LibSubParse} from "rainlang-0.1.2/src/lib/parse/LibSubParse.sol";
-import {LibConvert} from "rain-lib-typecast-0.1.0/src/LibConvert.sol";
+} from "rainlang-0.2.19/src/abstract/BaseRainlangSubParser.sol";
+import {LibSubParse} from "rainlang-0.2.19/src/lib/parse/LibSubParse.sol";
+import {LibConvert} from "rain-lib-typecast-0.1.4/src/LibConvert.sol";
 import {SUB_PARSER_WORD_PARSERS_LENGTH, SUB_PARSER_WORD_MERKLE_PROOF_VERIFY} from "../lib/parse/LibMerkleSubParser.sol";
-import {IInterpreterExternV4} from "rain-interpreter-interface-0.1.0/src/interface/IInterpreterExternV4.sol";
-import {LibParseOperand} from "rainlang-0.1.2/src/lib/parse/LibParseOperand.sol";
+import {IInterpreterExternV4} from "rainlang-interface-0.2.13/src/interface/IInterpreterExternV4.sol";
+import {LibParseOperand} from "rainlang-0.2.19/src/lib/parse/LibParseOperand.sol";
 import {
     OPERAND_HANDLER_FUNCTION_POINTERS as SUB_PARSER_OPERAND_HANDLERS,
     PARSE_META as SUB_PARSER_PARSE_META,
     SUB_PARSER_WORD_PARSERS
-} from "../generated/MerkleWords.pointers.sol";
+} from "../generated/MerkleWordsPointers.sol";
 
 uint8 constant PARSE_META_BUILD_DEPTH = 1;
 

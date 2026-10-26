@@ -2,33 +2,31 @@
 // SPDX-FileCopyrightText: Copyright (c) 2020 Rain Open Source Software Ltd
 pragma solidity ^0.8.25;
 
-import {Test} from "forge-std-1.16.1/src/Test.sol";
+import {Test} from "forge-std-1.17.0/src/Test.sol";
 
 bytes32 constant ROOT = 0xd4dee0beab2d53f2cc83e567171bd2820e49898130a22622b10ead383e90bd77;
 bytes32 constant PROOF0_0 = 0xb92c48e9d7abe27fd8dfd6b5dfdbfb1c9a463f80c712b66f3a5180a090cccafc;
 
 address constant LEAF0_0_VALUE = 0x1111111111111111111111111111111111111111;
 bytes32 constant LEAF0_0_AMOUNT = bytes32(uint256(5000000000000000000));
+bytes32 constant LEAF0_0_INNER = 0x1fec8b8a5a8c4018915544987a63932a69dc9c26bddbc32b1b60dd3f9a6201e5;
 bytes32 constant LEAF0_0 = 0xeb02c421cfa48976e66dfb29120745909ea3a0f843456c263cf8f1253483e283;
 
 address constant LEAF1_0_VALUE = 0x2222222222222222222222222222222222222222;
 bytes32 constant LEAF1_0_AMOUNT = bytes32(uint256(2500000000000000000));
+bytes32 constant LEAF1_0_INNER = 0x34e7d9283570da46fe6ee63f86208d24bdba0621148d9e104898449f0406625f;
 bytes32 constant LEAF1_0 = 0xb92c48e9d7abe27fd8dfd6b5dfdbfb1c9a463f80c712b66f3a5180a090cccafc;
 
 bytes32 constant PROOF1_0 = 0xeb02c421cfa48976e66dfb29120745909ea3a0f843456c263cf8f1253483e283;
 
 contract TestProofTest is Test {
     function testDerivedConstants() external pure {
-        // forge-lint: disable-next-line(mixed-case-variable)
-        bytes32 leaf0_0Calculated = keccak256(bytes.concat(keccak256(abi.encode(LEAF0_0_VALUE, LEAF0_0_AMOUNT))));
-
-        assertEq(LEAF0_0, leaf0_0Calculated, "LEAF0_0 should match the calculated value");
+        assertEq(LEAF0_0_INNER, keccak256(abi.encode(LEAF0_0_VALUE, LEAF0_0_AMOUNT)), "LEAF0_0_INNER");
+        assertEq(LEAF0_0, keccak256(bytes.concat(LEAF0_0_INNER)), "LEAF0_0 should match the calculated value");
         assertEq(PROOF0_0, LEAF1_0, "PROOF0_0 should match LEAF1_0");
 
-        // forge-lint: disable-next-line(mixed-case-variable)
-        bytes32 leaf1_0Calculated = keccak256(bytes.concat(keccak256(abi.encode(LEAF1_0_VALUE, LEAF1_0_AMOUNT))));
-
-        assertEq(LEAF1_0, leaf1_0Calculated, "LEAF1_0 should match the calculated value");
+        assertEq(LEAF1_0_INNER, keccak256(abi.encode(LEAF1_0_VALUE, LEAF1_0_AMOUNT)), "LEAF1_0_INNER");
+        assertEq(LEAF1_0, keccak256(bytes.concat(LEAF1_0_INNER)), "LEAF1_0 should match the calculated value");
         assertEq(PROOF1_0, LEAF0_0, "PROOF1_0 should match LEAF0_0");
     }
 

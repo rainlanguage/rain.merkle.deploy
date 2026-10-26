@@ -1,0 +1,11 @@
+name: Package Release
+on:
+  push:
+    tags:
+      - sol-v*
+jobs:
+  release:
+    uses: rainlanguage/rainix/.github/workflows/rainix-tag-release.yaml@main
+    with:
+      soldeer-package: rain-merkle-deploy
+    secrets: inherit

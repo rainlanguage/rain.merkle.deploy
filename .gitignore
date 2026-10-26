@@ -1,4 +1,9 @@
 out
 cache
+result
 node_modules
 dependencies
+remappings.txt
+.pre-commit-config.yaml
+.env
+.staged-config

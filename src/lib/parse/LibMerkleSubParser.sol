@@ -2,7 +2,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2020 Rain Open Source Software Ltd
 pragma solidity ^0.8.25;
 
-import {AuthoringMetaV2} from "rain-interpreter-interface-0.1.0/src/interface/deprecated/v1/IParserV1.sol";
+import {AuthoringMetaV2} from "rainlang-interface-0.2.13/src/interface/deprecated/v1/IParserV1.sol";
 
 uint256 constant SUB_PARSER_WORD_MERKLE_PROOF_VERIFY = 0;
 uint256 constant SUB_PARSER_WORD_PARSERS_LENGTH = 1;
@@ -16,7 +16,7 @@ library LibMerkleSubParser {
 
         meta[SUB_PARSER_WORD_MERKLE_PROOF_VERIFY] = AuthoringMetaV2(
             "merkle-proof-verify",
-            "Verifies a Merkle proof according to Open Zeppelin 5.x logic. Returns true if the proof is valid (caller must ensure). First value is the merkle root. Second is the leaf. Tail are the proof values."
+            "Verifies a proof of a leaf in an Open Zeppelin StandardMerkleTree; other tree formats are not supported. Returns 1 if the proof is valid, else 0. First input is the merkle root. Second is the leaf values hashed once, `hash(values...)`; the word applies the outer leaf hash itself. Tail are the proof values."
         );
         return abi.encode(meta);
     }

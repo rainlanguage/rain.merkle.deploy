@@ -8,11 +8,11 @@ import {
     StackItem,
     IOpcodeToolingV1,
     IIntegrityToolingV1
-} from "rainlang-0.1.2/src/abstract/BaseRainlangExtern.sol";
+} from "rainlang-0.2.19/src/abstract/BaseRainlangExtern.sol";
 import {LibOpMerkleProofVerify} from "../lib/op/LibOpMerkleProofVerify.sol";
-import {LibConvert} from "rain-lib-typecast-0.1.0/src/LibConvert.sol";
+import {LibConvert} from "rain-lib-typecast-0.1.4/src/LibConvert.sol";
 
-import {OPCODE_FUNCTION_POINTERS, INTEGRITY_FUNCTION_POINTERS} from "../generated/MerkleWords.pointers.sol";
+import {OPCODE_FUNCTION_POINTERS, INTEGRITY_FUNCTION_POINTERS} from "../generated/MerkleWordsPointers.sol";
 
 uint256 constant OPCODE_MERKLE_PROOF_VERIFY = 0;
 uint256 constant OPCODE_FUNCTION_POINTERS_LENGTH = 1;

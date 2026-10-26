@@ -2,21 +2,9 @@
 // SPDX-FileCopyrightText: Copyright (c) 2020 Rain Open Source Software Ltd
 pragma solidity =0.8.25;
 
-import {Script} from "forge-std-1.16.1/src/Script.sol";
-import {MerkleWords} from "../src/concrete/MerkleWords.sol";
-import {IMetaBoardV1_2} from "rain-metadata-0.1.0/src/interface/unstable/IMetaBoardV1_2.sol";
-import {LibDescribedByMeta} from "rain-metadata-0.1.0/src/lib/LibDescribedByMeta.sol";
+import {RainDeployBroadcast} from "rain-deploy-0.1.22/src/abstract/RainDeployBroadcast.sol";
+import {MerkleWordsDeploySuites} from "../src/abstract/MerkleWordsDeploySuites.sol";
 
-contract Deploy is Script {
-    function run() public {
-        uint256 deployerPrivateKey = vm.envUint("DEPLOYMENT_KEY");
-        bytes memory subParserDescribedByMeta = vm.readFileBinary("meta/MerkleWords.rain.meta");
-        IMetaBoardV1_2 metaboard = IMetaBoardV1_2(vm.envAddress("DEPLOY_METABOARD_ADDRESS"));
-
-        vm.startBroadcast(deployerPrivateKey);
-        MerkleWords subParser = new MerkleWords();
-        LibDescribedByMeta.emitForDescribedAddress(metaboard, subParser, subParserDescribedByMeta);
-
-        vm.stopBroadcast();
-    }
-}
+/// @title Deploy
+/// @notice Broadcasts the suite `DEPLOYMENT_SUITE` names.
+contract Deploy is MerkleWordsDeploySuites, RainDeployBroadcast {}

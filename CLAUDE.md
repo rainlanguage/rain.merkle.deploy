@@ -17,7 +17,8 @@ nix develop -c forge soldeer install
 nix develop -c forge build
 nix develop -c forge test
 ./script/build-meta.sh
-nix develop -c forge script ./script/Build.sol && ./script/build.sh
+nix develop -c forge script ./script/Build.sol
+nix run github:rainlanguage/rainix#rainix-static -- install-staged-config
 nix develop -c forge fmt
 nix develop -c slither .
 nix develop -c reuse lint

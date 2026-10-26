@@ -8,7 +8,7 @@ import {LibRainDeploy} from "rain-deploy-0.1.25/src/lib/LibRainDeploy.sol";
 import {LibRainDeploySnapshot} from "rain-deploy-0.1.25/src/lib/LibRainDeploySnapshot.sol";
 import {LibFs} from "rain-sol-codegen-0.1.39/src/lib/LibFs.sol";
 import {LibCodeGen} from "rain-sol-codegen-0.1.39/src/lib/LibCodeGen.sol";
-import {LibGenParseMeta} from "rainlang-0.2.27/src/lib/codegen/LibGenParseMeta.sol";
+import {LibGenParseMeta} from "rainlang-0.2.30/src/lib/codegen/LibGenParseMeta.sol";
 import {MerkleWordsDeploySuites} from "../src/abstract/MerkleWordsDeploySuites.sol";
 import {MerkleWords} from "../src/concrete/MerkleWords.sol";
 import {LibMerkleSubParser} from "../src/lib/parse/LibMerkleSubParser.sol";

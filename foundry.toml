@@ -30,6 +30,7 @@ fs_permissions = [
   { access = "read-write", path = "./src" },
   { access = "read-write", path = "./meta" },
   { access = "read", path = "./test/proof/tree.json" },
+  { access = "read", path = ".github/workflows/manual-sol-artifacts.yaml" },
 ]
 
 # Pins compiler output rather than behaviour; see
@@ -42,8 +43,8 @@ no_match_contract = "MerkleWordsDeploySnapshotTest|MerkleWordsPointersTest"
 [dependencies]
 forge-std = "1.17.0"
 "@openzeppelin-contracts" = "5.7.0"
-"rain-deploy" = "0.1.22"
-"rain-extrospection" = "0.1.14"
+"rain-deploy" = "0.1.25"
+"rain-extrospection" = "0.1.16"
 "rain-factory" = "0.2.5"
 "rain-intorastring" = "0.1.4"
 "rain-lib-hash" = "0.1.27"
@@ -57,7 +58,7 @@ forge-std = "1.17.0"
 "rain-solmem" = "0.1.28"
 "rain-string" = "0.3.9"
 "rain-tofu-erc20-decimals" = "0.1.4"
-"rainlang" = "0.2.19"
+"rainlang" = "0.2.26"
 "rainlang-interface" = "0.2.13"
 
 [soldeer]

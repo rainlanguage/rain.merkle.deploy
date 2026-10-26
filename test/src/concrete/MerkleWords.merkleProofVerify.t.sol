@@ -3,8 +3,8 @@
 pragma solidity =0.8.25;
 
 import {MerkleWords} from "src/concrete/MerkleWords.sol";
-import {OpTest, StackItem} from "rainlang-0.2.19/test/abstract/OpTest.sol";
-import {ExternIntegrityInputsMismatch} from "rainlang-0.2.19/src/error/ErrExtern.sol";
+import {OpTest, StackItem} from "rainlang-0.2.26/test/abstract/OpTest.sol";
+import {ExternIntegrityInputsMismatch} from "rainlang-0.2.26/src/error/ErrExtern.sol";
 import {Strings} from "@openzeppelin-contracts-5.7.0/utils/Strings.sol";
 import {
     ROOT,

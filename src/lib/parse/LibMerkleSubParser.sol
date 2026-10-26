@@ -2,7 +2,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2020 Rain Open Source Software Ltd
 pragma solidity ^0.8.25;
 
-import {AuthoringMetaV2} from "rainlang-interface-0.2.13/src/interface/deprecated/v1/IParserV1.sol";
+import {AuthoringMetaV2} from "rainlang-0.2.27/src/interface/deprecated/v1/IParserV1.sol";
 
 uint256 constant SUB_PARSER_WORD_MERKLE_PROOF_VERIFY = 0;
 uint256 constant SUB_PARSER_WORD_PARSERS_LENGTH = 1;

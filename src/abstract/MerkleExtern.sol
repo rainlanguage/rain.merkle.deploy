@@ -8,7 +8,7 @@ import {
     StackItem,
     IOpcodeToolingV1,
     IIntegrityToolingV1
-} from "rainlang-0.2.26/src/abstract/BaseRainlangExtern.sol";
+} from "rainlang-0.2.27/src/abstract/BaseRainlangExtern.sol";
 import {LibOpMerkleProofVerify} from "../lib/op/LibOpMerkleProofVerify.sol";
 import {LibConvert} from "rain-lib-typecast-0.1.4/src/LibConvert.sol";
 

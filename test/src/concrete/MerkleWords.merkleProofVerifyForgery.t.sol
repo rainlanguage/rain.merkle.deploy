@@ -3,7 +3,7 @@
 pragma solidity =0.8.25;
 
 import {MerkleWords} from "src/concrete/MerkleWords.sol";
-import {OpTest, StackItem} from "rainlang-0.2.27/test/abstract/OpTest.sol";
+import {OpTest, StackItem} from "rainlang-0.2.30/test/abstract/OpTest.sol";
 import {Hashes} from "@openzeppelin-contracts-5.7.0/utils/cryptography/Hashes.sol";
 import {Strings} from "@openzeppelin-contracts-5.7.0/utils/Strings.sol";
 

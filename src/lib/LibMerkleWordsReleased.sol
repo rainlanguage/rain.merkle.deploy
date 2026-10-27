@@ -6,6 +6,14 @@ pragma solidity ^0.8.25;
 
 import {DeployDependency, DeployMechanism, DeploySuite} from "rain-deploy-0.1.25/src/abstract/RainDeploySuitesBase.sol";
 
+import {
+    DEPLOYED_ADDRESS as MerkleWords_0_1_1_DEPLOYED_ADDRESS,
+    BYTECODE_HASH as MerkleWords_0_1_1_BYTECODE_HASH,
+    CREATION_CODE as MerkleWords_0_1_1_CREATION_CODE,
+    RUNTIME_CODE as MerkleWords_0_1_1_RUNTIME_CODE,
+    DEPENDENCIES as MerkleWords_0_1_1_DEPENDENCIES
+} from "../generated/0_1_1/MerkleWords.sol";
+
 /// @title LibMerkleWordsReleased
 /// @notice Every frozen release of `MerkleWords`: one entry per file in
 /// the append-only `src/generated/<tag>/` record, in tag order.
@@ -26,7 +34,18 @@ library LibMerkleWordsReleased {
     /// Every frozen release, in tag order.
     /// @return The released suites.
     function releasedSuites() internal pure returns (DeploySuite[] memory) {
-        DeploySuite[] memory suites = new DeploySuite[](0);
+        DeploySuite[] memory suites = new DeploySuite[](1);
+        suites[0] = DeploySuite({
+            suite: "merkle-words@0_1_1",
+            creationCode: MerkleWords_0_1_1_CREATION_CODE,
+            storedDeployedAddress: MerkleWords_0_1_1_DEPLOYED_ADDRESS,
+            storedBytecodeHash: MerkleWords_0_1_1_BYTECODE_HASH,
+            storedRuntimeCode: MerkleWords_0_1_1_RUNTIME_CODE,
+            artifactPath: "src/concrete/MerkleWords.sol:MerkleWords",
+            dependencies: abi.decode(MerkleWords_0_1_1_DEPENDENCIES, (DeployDependency[])),
+            mechanism: DeployMechanism.Zoltu,
+            mechanismData: ""
+        });
         return suites;
     }
 }

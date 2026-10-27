@@ -8,6 +8,7 @@ on:
         type: choice
         options:
           - merkle-words
+          - merkle-words@0_1_1
       verify:
         description: "Verify on the block explorer"
         required: false

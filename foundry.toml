@@ -5,7 +5,7 @@
 [external.package]
 name = "rain-merkle-deploy"
 # The version of the LAST Soldeer publish, moved only by a release.
-version = "0.1.0"
+version = "0.1.1"
 
 [profile.default]
 src = 'src'

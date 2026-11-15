@@ -9,14 +9,14 @@ import {DeployCandidate} from "rain-deploy-0.1.32/src/abstract/RainDeploySuitesB
 /// @notice External seam onto `Build`'s internal declarations.
 contract BuildHarness is Build {
     function externalGeneratedContracts() external pure returns (GeneratedContract[] memory) {
-        return generatedContracts();
+        return generatedContracts(declaration());
     }
 
     function externalSnapshotContractNames() external pure returns (string[] memory) {
-        return snapshotContractNames();
+        return snapshotContractNames(generatedContracts(declaration()));
     }
 
-    function externalCandidateSuites() external view returns (DeployCandidate[] memory) {
-        return checkedCandidateSuites();
+    function externalCandidateSuites() external pure returns (DeployCandidate[] memory) {
+        return checkedCandidateSuites(declaration());
     }
 }

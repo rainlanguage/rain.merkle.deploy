@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Copyright (c) 2020 Rain Open Source Software Ltd
 pragma solidity =0.8.25;
 
-import {RainDeployVerifyDeclaration} from "rain-deploy-0.1.33/src/abstract/RainDeployVerifyDeclaration.sol";
-import {ExternalDeployment} from "rain-deploy-0.1.33/src/abstract/RainDeployDeclarationChecks.sol";
+import {RainDeployVerifyDeclaration} from "rain-deploy-0.1.32/src/abstract/RainDeployVerifyDeclaration.sol";
+import {ExternalDeployment} from "rain-deploy-0.1.32/src/abstract/RainDeployDeclarationChecks.sol";
 import {MerkleWordsDeploySuites} from "src/abstract/MerkleWordsDeploySuites.sol";
 import {MerkleWords} from "src/concrete/MerkleWords.sol";
 

@@ -7,6 +7,7 @@ import {
     DeployDeclaration,
     DeployDependency,
     DeploySuite,
+    ExternalDeployment,
     RainDeploySuitesBase
 } from "rain-deploy-0.1.32/src/abstract/RainDeploySuitesBase.sol";
 import {LibRainDeployDeclaration} from "rain-deploy-0.1.32/src/lib/LibRainDeployDeclaration.sol";
@@ -17,6 +18,7 @@ import {
 } from "../generated/candidate/MerkleWords.sol";
 import {LibMerkleWordsDeploy} from "../lib/LibMerkleWordsDeploy.sol";
 import {LibReleasedSuites} from "../lib/LibReleasedSuites.sol";
+import {MerkleWords} from "../concrete/MerkleWords.sol";
 
 /// @title MerkleWordsDeploySuites
 /// @notice Everything this repo deploys, declared once. In `src/` because the
@@ -31,7 +33,20 @@ abstract contract MerkleWordsDeploySuites is RainDeploySuitesBase {
         DeployCandidate[] memory candidates = new DeployCandidate[](1);
         candidates[0] = merkleWordsCandidate();
         LibRainDeployDeclaration.addCandidates(declared, candidates);
+        declared.sourceCreationCode = sourceCreationCode;
+        declared.externalDeployments = externalDeployments();
         return declared;
+    }
+
+    function sourceCreationCode(string memory suite) internal pure returns (bytes memory) {
+        if (keccak256(bytes(suite)) == keccak256("merkle-words")) {
+            return type(MerkleWords).creationCode;
+        }
+        revert(string.concat("no source for suite: ", suite));
+    }
+
+    function externalDeployments() internal pure returns (ExternalDeployment[] memory) {
+        return new ExternalDeployment[](0);
     }
 
     /// Named so `script/Build.sol` emits the released-suites lib from this

@@ -4,11 +4,13 @@ pragma solidity ^0.8.25;
 
 import {
     DeployCandidate,
+    DeployDeclaration,
     DeployDependency,
-    DeployMechanism,
     DeploySuite,
     RainDeploySuitesBase
 } from "rain-deploy-0.1.33/src/abstract/RainDeploySuitesBase.sol";
+import {LibRainDeployDeclaration} from "rain-deploy-0.1.33/src/lib/LibRainDeployDeclaration.sol";
+import {LibRainDeployZoltuMechanism} from "rain-deploy-0.1.33/src/lib/LibRainDeployZoltuMechanism.sol";
 import {
     CREATION_CODE as MERKLE_WORDS_CREATION_CODE_CANDIDATE,
     RUNTIME_CODE as MERKLE_WORDS_RUNTIME_CODE_CANDIDATE
@@ -21,19 +23,19 @@ import {LibReleasedSuites} from "../lib/LibReleasedSuites.sol";
 /// published package excludes `test/`.
 abstract contract MerkleWordsDeploySuites is RainDeploySuitesBase {
     /// @inheritdoc RainDeploySuitesBase
-    function releasedSuites() internal pure override returns (DeploySuite[] memory) {
-        return LibReleasedSuites.releasedSuites();
-    }
-
-    /// @inheritdoc RainDeploySuitesBase
-    function candidateSuites() internal pure override returns (DeployCandidate[] memory) {
+    function declaration() internal pure override returns (DeployDeclaration memory) {
+        DeployDeclaration memory declared;
+        LibRainDeployDeclaration.extend(declared);
+        LibRainDeployZoltuMechanism.extend(declared);
+        LibRainDeployDeclaration.addReleased(declared, LibReleasedSuites.releasedSuites());
         DeployCandidate[] memory candidates = new DeployCandidate[](1);
         candidates[0] = merkleWordsCandidate();
-        return candidates;
+        LibRainDeployDeclaration.addCandidates(declared, candidates);
+        return declared;
     }
 
     /// Named so `script/Build.sol` emits the released-suites lib from this
-    /// candidate without indexing into `candidateSuites`.
+    /// candidate without indexing into `declaration().candidates`.
     /// @return The candidate.
     function merkleWordsCandidate() internal pure returns (DeployCandidate memory) {
         return DeployCandidate({
@@ -45,8 +47,9 @@ abstract contract MerkleWordsDeploySuites is RainDeploySuitesBase {
                 storedRuntimeCode: MERKLE_WORDS_RUNTIME_CODE_CANDIDATE,
                 artifactPath: "src/concrete/MerkleWords.sol:MerkleWords",
                 dependencies: new DeployDependency[](0),
-                mechanism: DeployMechanism.Zoltu,
-                mechanismData: ""
+                mechanismData: LibRainDeployZoltuMechanism.mechanismData(),
+                networks: new string[](0),
+                describedByMeta: ""
             }),
             unanchorableReason: ""
         });

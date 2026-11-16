@@ -20,6 +20,8 @@ import {LibMerkleWordsDeploy} from "../lib/LibMerkleWordsDeploy.sol";
 import {LibReleasedSuites} from "../lib/LibReleasedSuites.sol";
 import {MerkleWords} from "../concrete/MerkleWords.sol";
 
+string constant MERKLE_WORDS_SUITE = "merkle-words";
+
 /// @title MerkleWordsDeploySuites
 /// @notice Everything this repo deploys, declared once. In `src/` because the
 /// published package excludes `test/`.
@@ -39,7 +41,7 @@ abstract contract MerkleWordsDeploySuites is RainDeploySuitesBase {
     }
 
     function sourceCreationCode(string memory suite) internal pure returns (bytes memory) {
-        if (keccak256(bytes(suite)) == keccak256("merkle-words")) {
+        if (keccak256(bytes(suite)) == keccak256(bytes(MERKLE_WORDS_SUITE))) {
             return type(MerkleWords).creationCode;
         }
         revert(string.concat("no source for suite: ", suite));
@@ -55,7 +57,7 @@ abstract contract MerkleWordsDeploySuites is RainDeploySuitesBase {
     function merkleWordsCandidate() internal pure returns (DeployCandidate memory) {
         return DeployCandidate({
             snapshot: DeploySuite({
-                suite: "merkle-words",
+                suite: MERKLE_WORDS_SUITE,
                 creationCode: MERKLE_WORDS_CREATION_CODE_CANDIDATE,
                 storedDeployedAddress: LibMerkleWordsDeploy.MERKLE_WORDS_DEPLOYED_ADDRESS,
                 storedBytecodeHash: LibMerkleWordsDeploy.MERKLE_WORDS_DEPLOYED_CODEHASH,

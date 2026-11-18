@@ -23,6 +23,14 @@ import {
     DEPENDENCIES as MerkleWords_0_1_2_DEPENDENCIES
 } from "../generated/0_1_2/MerkleWords.sol";
 
+import {
+    DEPLOYED_ADDRESS as MerkleWords_0_1_3_DEPLOYED_ADDRESS,
+    BYTECODE_HASH as MerkleWords_0_1_3_BYTECODE_HASH,
+    CREATION_CODE as MerkleWords_0_1_3_CREATION_CODE,
+    RUNTIME_CODE as MerkleWords_0_1_3_RUNTIME_CODE,
+    DEPENDENCIES as MerkleWords_0_1_3_DEPENDENCIES
+} from "../generated/0_1_3/MerkleWords.sol";
+
 /// @title LibMerkleWordsReleased
 /// @notice Every frozen release of `MerkleWords`: one entry per file in
 /// the append-only `src/generated/<tag>/` record, in tag order.
@@ -43,7 +51,7 @@ library LibMerkleWordsReleased {
     /// Every frozen release, in tag order.
     /// @return The released suites.
     function releasedSuites() internal pure returns (DeploySuite[] memory) {
-        DeploySuite[] memory suites = new DeploySuite[](2);
+        DeploySuite[] memory suites = new DeploySuite[](3);
         suites[0] = DeploySuite({
             suite: "merkle-words@0_1_1",
             creationCode: MerkleWords_0_1_1_CREATION_CODE,
@@ -64,6 +72,18 @@ library LibMerkleWordsReleased {
             storedRuntimeCode: MerkleWords_0_1_2_RUNTIME_CODE,
             artifactPath: "src/concrete/MerkleWords.sol:MerkleWords",
             dependencies: abi.decode(MerkleWords_0_1_2_DEPENDENCIES, (DeployDependency[])),
+            mechanismData: LibRainDeployZoltuMechanism.mechanismData(),
+            networks: new string[](0),
+            describedByMeta: ""
+        });
+        suites[2] = DeploySuite({
+            suite: "merkle-words@0_1_3",
+            creationCode: MerkleWords_0_1_3_CREATION_CODE,
+            storedDeployedAddress: MerkleWords_0_1_3_DEPLOYED_ADDRESS,
+            storedBytecodeHash: MerkleWords_0_1_3_BYTECODE_HASH,
+            storedRuntimeCode: MerkleWords_0_1_3_RUNTIME_CODE,
+            artifactPath: "src/concrete/MerkleWords.sol:MerkleWords",
+            dependencies: abi.decode(MerkleWords_0_1_3_DEPENDENCIES, (DeployDependency[])),
             mechanismData: LibRainDeployZoltuMechanism.mechanismData(),
             networks: new string[](0),
             describedByMeta: ""

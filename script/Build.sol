@@ -2,13 +2,13 @@
 // SPDX-FileCopyrightText: Copyright (c) 2020 Rain Open Source Software Ltd
 pragma solidity =0.8.25;
 
-import {BuildScript, GeneratedContract} from "rain-deploy-0.1.36/src/abstract/BuildScript.sol";
-import {DeployDeclaration} from "rain-deploy-0.1.36/src/abstract/RainDeploySuitesBase.sol";
-import {LibRainDeploy} from "rain-deploy-0.1.36/src/lib/LibRainDeploy.sol";
-import {LibRainDeploySnapshot} from "rain-deploy-0.1.36/src/lib/LibRainDeploySnapshot.sol";
+import {BuildScript, GeneratedContract} from "rain-deploy-0.1.37/src/abstract/BuildScript.sol";
+import {DeployDeclaration} from "rain-deploy-0.1.37/src/abstract/RainDeploySuitesBase.sol";
+import {LibRainDeploy} from "rain-deploy-0.1.37/src/lib/LibRainDeploy.sol";
+import {LibRainDeploySnapshot} from "rain-deploy-0.1.37/src/lib/LibRainDeploySnapshot.sol";
 import {LibFs} from "rain-sol-codegen-0.1.39/src/lib/LibFs.sol";
 import {LibCodeGen} from "rain-sol-codegen-0.1.39/src/lib/LibCodeGen.sol";
-import {LibGenParseMeta} from "rainlang-0.2.39/src/lib/codegen/LibGenParseMeta.sol";
+import {LibGenParseMeta} from "rainlang-0.2.40/src/lib/codegen/LibGenParseMeta.sol";
 import {MerkleWordsDeploySuites} from "../src/abstract/MerkleWordsDeploySuites.sol";
 import {MerkleWords} from "../src/concrete/MerkleWords.sol";
 import {LibMerkleSubParser} from "../src/lib/parse/LibMerkleSubParser.sol";

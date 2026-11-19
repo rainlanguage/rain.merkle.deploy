@@ -11,6 +11,7 @@ on:
           - merkle-words@0_1_1
           - merkle-words@0_1_2
           - merkle-words@0_1_3
+          - merkle-words@0_1_4
       verify:
         description: "Verify on the block explorer"
         required: false
